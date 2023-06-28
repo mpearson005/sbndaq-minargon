@@ -49,8 +49,8 @@ r_databases = {}
 for database_name, config in redis_instances.items():
     this_redis = Redis(**config)
     r_databases[database_name] = this_redis
-
-# decorator for getting the correct database from the provided link
+print("REDIS", r_databases)
+# decorator for getting the correct database from the provided linkk
 def redis_route(func):
     @wraps(func)
     def wrapper(rconnect, *args, **kwargs):
@@ -830,11 +830,8 @@ def build_link_tree(rconnect):
     return tree_dict
     
 
-def get_group_config(rconnect, group_name, **kwargs):
-    return get_group_config_internal(rconnect, rconnect, group_name, **kwargs)
-
 @redis_route
-def get_group_config_internal(rconnect, rname, group_name):
+def get_group_config(rconnect, group_name):
     # default ret
     default = {
       "group": group_name,
@@ -844,7 +841,7 @@ def get_group_config_internal(rconnect, rname, group_name):
       "streams": [],
       "stream_links": [],
     }
-    redis_database = rname
+    redis_database = "online"
 
     # setup pipeline
     pipeline = rconnect.pipeline()
@@ -872,7 +869,7 @@ def get_group_config_internal(rconnect, rname, group_name):
     config["group"] = group_name
 
     # add the archiving database
-    if "archiving" in config["streams"] and "metric_archiving" in app.config["REDIS_INSTANCES"]:
+    if "archiving" in config["streams"]:
         config["streams"].append("archived")
         config["stream_links"].append("metric_archiving")
 

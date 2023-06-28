@@ -1,8 +1,8 @@
-export function throw_alert(text, divID, showIdler) {
+export function throw_alert(text, divID) {
   $(".alert-holder").append(
     `<div class="alert alert-primary alert-dismissible fade show" id="` + divID + `">` +
      `<div class="inline">` + text + `</div>` +
-    (showIdler ? `<div class="hollowLoader inline"><div class="largeBox"></div><div class="smallBox"></div></div>` : "") +
+    `<div class="hollowLoader inline"><div class="largeBox"></div><div class="smallBox"></div></div>` +
     `<button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria=hidden="true">&times;</span>
     </button>

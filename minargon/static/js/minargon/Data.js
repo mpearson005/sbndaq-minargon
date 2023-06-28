@@ -185,11 +185,9 @@ export class D3DataPoll {
       var self = this;
       var alertID = this.name().replace(/\s/g, '').replace(/:/g,'').replace(/_/g,'');
       var alertText = "Loading data for request (" + this.name() + ")";
-      var timeout = setTimeout(function() { throw_alert(alertText, alertID, true);}, 3000);
+      var timeout = setTimeout(function() { throw_alert(alertText, alertID);}, 3000);
       this.data.get_data_promise(start, stop)
         .then(function(value) {
-          throw_alert("INFO -- Executed query: " + String(value.query), "query-info", false);
-          console.log(value);
           for (var i = 0; i < self.listeners.length; i++) {
             var func = self.listeners[i];
             func(value, false);
@@ -217,7 +215,7 @@ export class D3DataPoll {
         var self = this;
         var alertID = this.name().replace(/\s/g, '').replace(/:/g,'').replace(/_/g,'');
         var alertText = "Loading data for request (" + this.name() + ")";
-        var timeout = setTimeout(function() { throw_alert(alertText, alertID, true);}, 3000);
+        var timeout = setTimeout(function() { throw_alert(alertText, alertID);}, 3000);
         this.data.get_data_promise(start, undefined, n_data)
             .then(function(value) {
                clearTimeout(timeout);
@@ -230,7 +228,7 @@ export class D3DataPoll {
                 // determine the start
                 var next_start = start;
                 if (next_start !== undefined && value.min_end_time != 0 && value.min_end_time != undefined) next_start = value.min_end_time;
-                setTimeout(function() { self.run(next_start, n_data); }, Math.min(self.timeout, 2147483647 /* max 32-bit integer in JS */));
+                setTimeout(function() { self.run(next_start, n_data); }, self.timeout);
             })
             .catch(function(error) {
               throw_database_error(error, "poll_run");

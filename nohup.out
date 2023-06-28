@@ -1,0 +1,398 @@
+REDIS {'online': Redis<ConnectionPool<Connection<host=localhost,port=6379,db=0>>>}
+ * Serving Flask app 'minargon' (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: on
+ * Running on all addresses (0.0.0.0)
+   WARNING: This is a development server. Do not use it in a production deployment.
+ * Running on http://127.0.0.1:5002
+ * Running on http://172.16.0.26:5002 (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 589-864-423
+172.16.1.7 - - [16/Jun/2023 18:38:32] "[35m[1mGET / HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 2091, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/hexnu/sbndaq-minargon/minargon/__init__.py", line 40, in __call__
+    return self.app(environ, start_response)
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 2076, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/hexnu/sbndaq-minargon/minargon/views/common/views.py", line 33, in index
+    return redirect(url_for('introduction'))
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/helpers.py", line 338, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/helpers.py", line 325, in url_for
+    rv = url_adapter.build(
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/werkzeug/routing.py", line 2305, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'introduction'. Did you mean 'ping_redis' instead?
+172.16.1.7 - - [16/Jun/2023 18:38:32] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+172.16.1.7 - - [16/Jun/2023 18:38:32] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+172.16.1.7 - - [16/Jun/2023 18:38:32] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+172.16.1.8 - - [16/Jun/2023 18:40:14] "[35m[1mGET / HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 2091, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/hexnu/sbndaq-minargon/minargon/__init__.py", line 40, in __call__
+    return self.app(environ, start_response)
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 2076, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/hexnu/sbndaq-minargon/minargon/views/common/views.py", line 33, in index
+    return redirect(url_for('introduction'))
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/helpers.py", line 338, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/helpers.py", line 325, in url_for
+    rv = url_adapter.build(
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/werkzeug/routing.py", line 2305, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'introduction'. Did you mean 'ping_redis' instead?
+172.16.1.8 - - [16/Jun/2023 18:40:14] "GET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+172.16.1.8 - - [16/Jun/2023 18:40:14] "GET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+172.16.1.8 - - [16/Jun/2023 18:40:15] "GET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+172.16.1.7 - - [16/Jun/2023 18:45:39] "[35m[1mGET /introduction HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 1492, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 1474, in raise_routing_exception
+    raise request.routing_exception  # type: ignore
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/ctx.py", line 376, in match_request
+    result = self.url_adapter.match(return_rule=True)  # type: ignore
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/werkzeug/routing.py", line 2047, in match
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 2091, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/hexnu/sbndaq-minargon/minargon/__init__.py", line 40, in __call__
+    return self.app(environ, start_response)
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 2076, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 1386, in handle_user_exception
+    return self.handle_http_exception(e)
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 1326, in handle_http_exception
+    return self.ensure_sync(handler)(e)
+  File "/home/hexnu/sbndaq-minargon/minargon/views/common/error.py", line 41, in custom404
+    return render_template('error/error.html', **render_args), 404
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/templating.py", line 147, in render_template
+    return _render(
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/templating.py", line 128, in _render
+    rv = template.render(context)
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/jinja2/environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/jinja2/environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/home/hexnu/sbndaq-minargon/minargon/templates/error/error.html", line 1, in top-level template code
+    {% extends "layout.html" | front_ended %}
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/templating.py", line 59, in get_source
+    return self._get_source_fast(environment, template)
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/templating.py", line 95, in _get_source_fast
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: 172.16.0.26:5002/layout.html
+172.16.1.7 - - [16/Jun/2023 18:45:40] "GET /introduction?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+172.16.1.7 - - [16/Jun/2023 18:45:40] "GET /introduction?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+172.16.1.7 - - [16/Jun/2023 18:45:40] "GET /introduction?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+172.16.1.7 - - [16/Jun/2023 18:45:40] "GET /introduction?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+172.16.1.7 - - [16/Jun/2023 18:46:10] "[35m[1mGET /layout.html HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 1492, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 1474, in raise_routing_exception
+    raise request.routing_exception  # type: ignore
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/ctx.py", line 376, in match_request
+    result = self.url_adapter.match(return_rule=True)  # type: ignore
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/werkzeug/routing.py", line 2047, in match
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 2091, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/hexnu/sbndaq-minargon/minargon/__init__.py", line 40, in __call__
+    return self.app(environ, start_response)
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 2076, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 1386, in handle_user_exception
+    return self.handle_http_exception(e)
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 1326, in handle_http_exception
+    return self.ensure_sync(handler)(e)
+  File "/home/hexnu/sbndaq-minargon/minargon/views/common/error.py", line 41, in custom404
+    return render_template('error/error.html', **render_args), 404
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/templating.py", line 147, in render_template
+    return _render(
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/templating.py", line 128, in _render
+    rv = template.render(context)
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/jinja2/environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/jinja2/environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/home/hexnu/sbndaq-minargon/minargon/templates/error/error.html", line 1, in top-level template code
+    {% extends "layout.html" | front_ended %}
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/templating.py", line 59, in get_source
+    return self._get_source_fast(environment, template)
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/templating.py", line 95, in _get_source_fast
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: 172.16.0.26:5002/layout.html
+172.16.1.7 - - [16/Jun/2023 18:46:10] "GET /layout.html?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+172.16.1.7 - - [16/Jun/2023 18:46:10] "GET /layout.html?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+172.16.1.7 - - [16/Jun/2023 18:46:10] "GET /layout.html?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+172.16.1.7 - - [16/Jun/2023 18:46:10] "GET /layout.html?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+172.16.1.7 - - [16/Jun/2023 18:46:49] "[35m[1mGET /daq.html HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 1492, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 1474, in raise_routing_exception
+    raise request.routing_exception  # type: ignore
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/ctx.py", line 376, in match_request
+    result = self.url_adapter.match(return_rule=True)  # type: ignore
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/werkzeug/routing.py", line 2047, in match
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 2091, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/hexnu/sbndaq-minargon/minargon/__init__.py", line 40, in __call__
+    return self.app(environ, start_response)
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 2076, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 1386, in handle_user_exception
+    return self.handle_http_exception(e)
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 1326, in handle_http_exception
+    return self.ensure_sync(handler)(e)
+  File "/home/hexnu/sbndaq-minargon/minargon/views/common/error.py", line 41, in custom404
+    return render_template('error/error.html', **render_args), 404
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/templating.py", line 147, in render_template
+    return _render(
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/templating.py", line 128, in _render
+    rv = template.render(context)
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/jinja2/environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/jinja2/environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/home/hexnu/sbndaq-minargon/minargon/templates/error/error.html", line 1, in top-level template code
+    {% extends "layout.html" | front_ended %}
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/templating.py", line 59, in get_source
+    return self._get_source_fast(environment, template)
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/templating.py", line 95, in _get_source_fast
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: 172.16.0.26:5002/layout.html
+172.16.1.7 - - [16/Jun/2023 18:46:49] "GET /daq.html?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+172.16.1.7 - - [16/Jun/2023 18:46:49] "GET /daq.html?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+172.16.1.7 - - [16/Jun/2023 18:46:49] "GET /daq.html?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+172.16.1.7 - - [16/Jun/2023 18:46:49] "GET /daq.html?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+172.16.1.6 - - [16/Jun/2023 20:50:14] "[35m[1mGET / HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 2091, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/hexnu/sbndaq-minargon/minargon/__init__.py", line 40, in __call__
+    return self.app(environ, start_response)
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 2076, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/hexnu/sbndaq-minargon/minargon/views/common/views.py", line 33, in index
+    return redirect(url_for('introduction'))
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/helpers.py", line 338, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/helpers.py", line 325, in url_for
+    rv = url_adapter.build(
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/werkzeug/routing.py", line 2305, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'introduction'. Did you mean 'ping_redis' instead?
+172.16.1.6 - - [16/Jun/2023 20:50:15] "GET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+172.16.1.6 - - [16/Jun/2023 20:50:15] "GET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+172.16.1.6 - - [16/Jun/2023 20:50:15] "GET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+172.16.1.6 - - [16/Jun/2023 22:27:20] "[35m[1mGET / HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 2091, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/hexnu/sbndaq-minargon/minargon/__init__.py", line 40, in __call__
+    return self.app(environ, start_response)
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 2076, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/hexnu/sbndaq-minargon/minargon/views/common/views.py", line 33, in index
+    return redirect(url_for('introduction'))
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/helpers.py", line 338, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/helpers.py", line 325, in url_for
+    rv = url_adapter.build(
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/werkzeug/routing.py", line 2305, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'introduction'. Did you mean 'ping_redis' instead?
+172.16.1.6 - - [16/Jun/2023 22:27:20] "GET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+172.16.1.6 - - [16/Jun/2023 22:27:20] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+172.16.1.6 - - [16/Jun/2023 22:27:20] "GET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+172.16.1.6 - - [16/Jun/2023 22:42:32] "[35m[1mGET / HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 2091, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/hexnu/sbndaq-minargon/minargon/__init__.py", line 40, in __call__
+    return self.app(environ, start_response)
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 2076, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/hexnu/sbndaq-minargon/minargon/views/common/views.py", line 33, in index
+    return redirect(url_for('introduction'))
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/helpers.py", line 338, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/helpers.py", line 325, in url_for
+    rv = url_adapter.build(
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/werkzeug/routing.py", line 2305, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'introduction'. Did you mean 'ping_redis' instead?
+172.16.1.6 - - [16/Jun/2023 22:42:32] "GET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+172.16.1.6 - - [16/Jun/2023 22:42:32] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+172.16.1.6 - - [16/Jun/2023 22:42:32] "GET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+172.16.1.6 - - [16/Jun/2023 22:47:40] "[35m[1mGET / HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 2091, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/hexnu/sbndaq-minargon/minargon/__init__.py", line 40, in __call__
+    return self.app(environ, start_response)
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 2076, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/hexnu/sbndaq-minargon/minargon/views/common/views.py", line 33, in index
+    return redirect(url_for('introduction'))
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/helpers.py", line 338, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/helpers.py", line 325, in url_for
+    rv = url_adapter.build(
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/werkzeug/routing.py", line 2305, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'introduction'. Did you mean 'ping_redis' instead?
+172.16.1.6 - - [16/Jun/2023 22:47:40] "GET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+172.16.1.6 - - [16/Jun/2023 22:47:40] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+172.16.1.6 - - [16/Jun/2023 22:47:40] "GET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+ * Detected change in '/home/hexnu/sbndaq-minargon/runserver.py', reloading
+REDIS {'online': Redis<ConnectionPool<Connection<host=localhost,port=6379,db=0>>>}
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 589-864-423
+172.16.1.6 - - [16/Jun/2023 22:48:56] "[35m[1mGET / HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 2091, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/hexnu/sbndaq-minargon/minargon/__init__.py", line 40, in __call__
+    return self.app(environ, start_response)
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 2076, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/hexnu/sbndaq-minargon/minargon/views/common/views.py", line 33, in index
+    return redirect(url_for('introduction'))
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/helpers.py", line 338, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/helpers.py", line 325, in url_for
+    rv = url_adapter.build(
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/werkzeug/routing.py", line 2305, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'introduction'. Did you mean 'ping_redis' instead?
+172.16.1.6 - - [16/Jun/2023 22:48:56] "GET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+172.16.1.6 - - [16/Jun/2023 22:48:56] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+172.16.1.6 - - [16/Jun/2023 22:48:56] "GET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+172.16.1.6 - - [16/Jun/2023 22:48:57] "[35m[1mGET / HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 2091, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/hexnu/sbndaq-minargon/minargon/__init__.py", line 40, in __call__
+    return self.app(environ, start_response)
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 2076, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/hexnu/sbndaq-minargon/minargon/views/common/views.py", line 33, in index
+    return redirect(url_for('introduction'))
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/helpers.py", line 338, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/flask/helpers.py", line 325, in url_for
+    rv = url_adapter.build(
+  File "/home/hexnu/sbndaq-minargon/env/lib/python3.8/site-packages/werkzeug/routing.py", line 2305, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'introduction'. Did you mean 'ping_redis' instead?
+172.16.1.6 - - [16/Jun/2023 22:48:57] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+172.16.1.6 - - [16/Jun/2023 22:48:57] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+172.16.1.6 - - [16/Jun/2023 22:48:57] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -

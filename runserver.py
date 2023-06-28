@@ -2,4 +2,4 @@
 from __future__ import absolute_import
 from minargon import app
 
-app.run(debug=True, port=5001)
+app.run(debug=True,host="172.16.0.26", port=5002)

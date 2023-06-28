@@ -50,13 +50,13 @@ class PostgresConnectionError:
     def register_postgres_error(self, err, name):
         self.err = err
         self.name = name
-        self.msg = str(err) + ("\nError occured while executing query:\n\n%s" % err.cursor.query)
+        self.msg = str(err)
         return self
 
     def register_fileopen_error(self, err, name):
         self.err = err
         self.name = name
-        self.msg = "Error opening secret key file: %s" % str(err)
+        self.msg = "Error opening secret key file: %s" % err[1]
         return self
 
     def register_notfound_error(self, name):
@@ -135,8 +135,6 @@ def postgres_route(func):
                     return func((connection,config), *args, **kwargs)
                 except (psycopg2.Error, PostgresURLException) as err:
                     error = PostgresConnectionError().register_postgres_error(err, connection_name).with_front_end(front_end_abort)
-                    err.cursor.execute("ROLLBACK")
-                    err.cursor.connection.commit()
                     return abort(503, error)
             else:
                 error = connection.with_front_end(front_end_abort)
@@ -194,10 +192,16 @@ def postgres_query(IDs, start_t, stop_t, n_data, connection, config, **table_arg
 
     query = postgres_querymaker(IDs, start_t, stop_t, n_data, config, **table_args)
     # Execute query, rollback connection if it fails
-    cursor.execute(query)
-    data = cursor.fetchall()
+    try:
+        cursor.execute(query)
+        data = cursor.fetchall()
+    except:
+        cursor.execute("ROLLBACK")
+        connection.commit()
+        # let website handle error
+        raise	
 
-    return data, query
+    return data
 
 #________________________________________________________________________________________________
 # Gets the sample step size in unix miliseconds
@@ -211,7 +215,7 @@ def ps_step(connection, ID):
     start_t = calendar.timegm(start_t.timetuple()) *1e3 + start_t.microsecond/1e3 # convert to unix ms
     stop_t  = calendar.timegm(stop_t.timetuple())  *1e3 + stop_t.microsecond/1e3 
 
-    data, query = postgres_query([ID], start_t, stop_t, 2, *connection, **request.args.to_dict())
+    data = postgres_query([ID], start_t, stop_t, 2, *connection, **request.args.to_dict())
 
     # Predeclare variable otherwise it will complain the variable doesnt exist 
     step_size = None
@@ -226,7 +230,7 @@ def ps_step(connection, ID):
     if (step_size == None):
         step_size = 1e3
 
-    return jsonify(step=float(step_size))
+    return jsonify(step=step_size)
 #________________________________________________________________________________________________
 # Function to check None Values and empty unit
 def CheckVal(var):
@@ -263,9 +267,15 @@ def pv_meta_internal(connection, ID):
                  FROM DCS_PRD.num_metadata, DCS_PRD.CHANNEL
                  WHERE DCS_PRD.CHANNEL.CHANNEL_ID=%s AND DCS_PRD.num_metadata.CHANNEL_ID=%s """ % (ID, ID)
 
-    # Failure handled by decorator
-    cursor.execute(query)
-    data = cursor.fetchall()
+    # Execute query, rollback connection if it fails
+    try:
+        cursor.execute(query)
+        data = cursor.fetchall()
+    except:
+        print("Error! Rolling back connection")
+        cursor.execute("ROLLBACK")
+        connection.commit()
+        data = []
 	
     # Format the data from database query
     ret = {}
@@ -412,7 +422,7 @@ def ps_series(connection, ID):
     table_args.pop('n_data', None)
     table_args.pop('now', None)
 
-    data, query = postgres_query([ID], start_t, stop_t, args['n_data'], *connection, **table_args)
+    data = postgres_query([ID], start_t, stop_t, args['n_data'], *connection, **table_args)
 
     # Format the data from database query
     data_list = []
@@ -432,14 +442,14 @@ def ps_series(connection, ID):
                 continue
 
             # Add the data to the list
-        data_list.append( [float(row['sample_time']), value] )
+        data_list.append( [row['sample_time'], value] )
 
     # Setup the return dictionary
     ret = {
         ID: data_list
     }
 
-    return jsonify(values=ret, query=query)
+    return jsonify(values=ret)
 
 def get_configs(connection, IDs, **kwargs):
     return pv_list(connection, IDs=tuple(IDs), **kwargs)
@@ -776,15 +786,15 @@ def get_epics_last_value(connection,group):
 
     database = connection[1]["name"]
     if (database == "sbnteststand"):
-        query = """select c.name, c.descr, to_char( c.last_smpl_time,'YYYY.MM.DD HH24:MI:SS'),
+        query = """select c.name, c.descr, c.last_smpl_time, 
     coalesce((c.last_num_val::numeric)::text,(trunc(c.last_float_val::numeric,3))::text, c.last_str_val),channel_id
     from dcs_archiver.channel c,dcs_archiver.chan_grp g
     where c.grp_id=g.grp_id and g.name='%s' order by c.name""" % group
     else:
-        query = """select c.name, c.descr, to_char( c.last_smpl_time,'YYYY.MM.DD HH24:MI:SS'),
-    coalesce((c.last_num_val::numeric)::text,(trunc(c.last_float_val::numeric,3))::text, c.last_str_val),c.channel_id,m.unit 
-    from dcs_prd.channel c,dcs_prd.chan_grp g,dcs_prd.num_metadata m 
-    where c.grp_id=g.grp_id and g.name='%s' and c.channel_id=m.channel_id order by c.name""" % group
+        query = """select c.name, c.descr, c.last_smpl_time, 
+    coalesce((c.last_num_val::numeric)::text,(trunc(c.last_float_val::numeric,3))::text, c.last_str_val),channel_id
+    from dcs_prd.channel c,dcs_prd.chan_grp g
+    where c.grp_id=g.grp_id and g.name='%s' order by c.name""" % group
 
     cursor.execute(query);
     dbrows = cursor.fetchall();
@@ -795,7 +805,7 @@ def get_epics_last_value(connection,group):
             time = row[2].strftime("%Y-%m-%d %H:%M")
         except:
             time = row[2]
-        formatted.append((row[0],row[1],time,row[3],row[4],row[5]))
+        formatted.append((row[0],row[1],time,row[3],row[4]))
 
     return formatted
 
